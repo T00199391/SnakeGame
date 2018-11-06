@@ -25,10 +25,11 @@ public class MainGui extends JFrame {
         setTitle(getHeading());
         setLocation(200,200);
         setSize(350,500);
+        setVisible(true);
+        setResizable(false);
 
         //Panel
         panel.setBackground(Color.black);
         setContentPane(panel);
     }
-
 }

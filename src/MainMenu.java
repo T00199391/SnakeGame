@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //Class that makes the main menu
-public class MainMenu extends MainGui implements ActionListener,SetMenu{
+public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu{
 
     //Declares the play button
     JButton play = new JButton("Play");
@@ -14,20 +14,23 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu{
     JButton exit = new JButton("Exit");
     //Declares a label
     JLabel title = new JLabel("Snake Game");
+    //Declares the dimensions of the buttons
+    Dimension dim = new Dimension(200,40);
 
     //Method to set the menu using the temp gui
     public void setMenu(){
         setHeading("Main Menu");
-        panel.setLayout(null);
-        setVisible(true);
         Gui();
         addingButtons();
         addTitle();
     }
 
+    public void hideMenu() {
+        setVisible(false);
+    }
+
     //This method will add the title label
     public void addTitle(){
-        title.setLayout(null);
         title.setLocation(93,50);
         title.setSize(200,40);
         title.setFont(new Font("monospaced",Font.PLAIN,25));
@@ -38,13 +41,13 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu{
 
     //This method adds the buttons and their action listeners
     public void addingButtons(){
-        play.setBounds(68,150,200,40);
+        play.setPreferredSize(dim);
         play.addActionListener(this);
 
-        settings.setBounds(68,250,200,40);
+        settings.setPreferredSize(dim);
         settings.addActionListener(this);
 
-        exit.setBounds(68,350,200,40);
+        exit.setPreferredSize(dim);
         exit.addActionListener(this);
 
         panel.add(play);
@@ -62,6 +65,7 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu{
         else if(e.getSource() == settings){
             SettingsMenu menu = new SettingsMenu();
             menu.setMenu();
+            hideMenu();
         }
         else{
             System.exit(0);
