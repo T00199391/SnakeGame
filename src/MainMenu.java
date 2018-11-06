@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //Class that makes the main menu
-public class MainMenu extends MainGui implements ActionListener{
+public class MainMenu extends MainGui implements ActionListener,SetMenu{
 
     //Declares the play button
     JButton play = new JButton("Play");
@@ -60,7 +60,8 @@ public class MainMenu extends MainGui implements ActionListener{
             JOptionPane.showMessageDialog(null,"Play");
         }
         else if(e.getSource() == settings){
-            JOptionPane.showMessageDialog(null,"Settings");
+            SettingsMenu menu = new SettingsMenu();
+            menu.setMenu();
         }
         else{
             System.exit(0);
