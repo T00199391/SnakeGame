@@ -34,12 +34,18 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
     public void addingButtons(){
         play.setBounds(68,150,200,40);
         play.addActionListener(this);
+        play.setBackground(Color.white);
+        play.setForeground(Color.black);
 
         settings.setBounds(68,250,200,40);
         settings.addActionListener(this);
+        settings.setBackground(Color.white);
+        settings.setForeground(Color.black);
 
         exit.setBounds(68,350,200,40);
         exit.addActionListener(this);
+        exit.setBackground(Color.white);
+        exit.setForeground(Color.black);
 
         panel.add(play);
         panel.add(settings);

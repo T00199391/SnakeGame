@@ -27,7 +27,7 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
         Gui();
         panel.setLayout(null);
         addButtons();
-        addComboBox();
+        addDiffComboBox();
         addTitleLabel();
         addDifficultyLabel();
     }
@@ -39,14 +39,18 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
     public void addButtons(){
         confirm.addActionListener(this);
         confirm.setBounds(68,400,200,40);
+        confirm.setBackground(Color.white);
+        confirm.setForeground(Color.black);
         panel.add(confirm);
     }
 
-    public void addComboBox(){
+    public void addDiffComboBox(){
         diff.setBounds(68,100,200,40);
         diff.setFont(new Font("monospaced",Font.PLAIN,15));
         diff.addActionListener(this);
         diff.setSelectedIndex(1);
+        diff.setBackground(Color.white);
+        diff.setForeground(Color.black);
         panel.add(diff);
     }
 
@@ -64,6 +68,10 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
         diffLabel.setForeground(Color.white);
         diffLabel.setVisible(true);
         panel.add(diffLabel);
+    }
+
+    public void addInvertedColour(){
+        
     }
     @Override
     public void actionPerformed(ActionEvent e) {
