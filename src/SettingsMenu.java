@@ -15,8 +15,10 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
     JComboBox<String> diff = new JComboBox<String>(difficulty);
     //Variable that stores the value of the choose difficulty
     public String choice;
-    //Declares a JLabel
+    //Declares a JLabel for title
     JLabel titleLabel = new JLabel("Choose Difficulty");
+    //Declares a JLabel
+    JLabel diffLabel = new JLabel();
 
 
     //A method to set up the menu using the temp gui
@@ -27,6 +29,7 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
         addButtons();
         addComboBox();
         addTitleLabel();
+        addDifficultyLabel();
     }
 
     public void hideMenu(){
@@ -40,7 +43,8 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
     }
 
     public void addComboBox(){
-        diff.setBounds(100,100,100,100);
+        diff.setBounds(68,100,200,40);
+        diff.setFont(new Font("monospaced",Font.PLAIN,15));
         diff.addActionListener(this);
         diff.setSelectedIndex(1);
         panel.add(diff);
@@ -54,6 +58,13 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
         panel.add(titleLabel);
     }
 
+    public void addDifficultyLabel(){
+        diffLabel.setBounds(68,160,300,70);
+        diffLabel.setFont(new Font("monospaced",Font.PLAIN,15));
+        diffLabel.setForeground(Color.white);
+        diffLabel.setVisible(true);
+        panel.add(diffLabel);
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == confirm){
@@ -69,15 +80,16 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
         }
     }
 
+    //https://stackoverflow.com/questions/1090098/newline-in-jlabel
     public void difficultyChoice(){
         if(choice.equals("Easy")){
-            System.out.print("Easy Mode");
+            diffLabel.setText("<html>Easy Mode<br/>Speed Of Snake: Slow<br/>Length Of Snake: Small</html>");
         }
         else if(choice.equals("Normal")){
-            System.out.print("Normal Mode");
+            diffLabel.setText("<html>Normal Mode<br/>Speed Of Snake: Normal<br/>Length Of Snake: Medium</html>");
         }
         else{
-            System.out.print("Hard Mode");
+            diffLabel.setText("<html>Hard Mode<br/>Speed Of Snake: Fast<br/>Length Of Snake: Large</html>");
         }
     }
 }

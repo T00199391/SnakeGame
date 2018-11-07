@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class Main{
     public static void main(String[] args) {
-        SettingsMenu menu = new SettingsMenu();
+        MainMenu menu = new MainMenu();
         menu.setMenu();
     }
 }
