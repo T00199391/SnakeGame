@@ -14,25 +14,24 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
     JButton exit = new JButton("Exit");
     //Declares a label
     JLabel title = new JLabel("Snake Game");
-    //Declares the dimensions of the buttons
-    Dimension dim = new Dimension(200,40);
 
     //Method to set the menu using the temp gui
     public void setMenu(){
         setHeading("Main Menu");
         Gui();
+        panel.setLayout(null);
         addingButtons();
         addTitle();
     }
 
+    //A method that will hide the previous gui
     public void hideMenu() {
         setVisible(false);
     }
 
     //This method will add the title label
     public void addTitle(){
-        title.setLocation(93,50);
-        title.setSize(200,40);
+        title.setBounds(90,50,200,40);
         title.setFont(new Font("monospaced",Font.PLAIN,25));
         title.setForeground(Color.white);
         title.setVisible(true);
@@ -41,13 +40,13 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
 
     //This method adds the buttons and their action listeners
     public void addingButtons(){
-        play.setPreferredSize(dim);
+        play.setBounds(68,150,200,40);
         play.addActionListener(this);
 
-        settings.setPreferredSize(dim);
+        settings.setBounds(68,250,200,40);
         settings.addActionListener(this);
 
-        exit.setPreferredSize(dim);
+        exit.setBounds(68,350,200,40);
         exit.addActionListener(this);
 
         panel.add(play);

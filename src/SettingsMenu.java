@@ -1,22 +1,21 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SettingsMenu extends MainGui implements ActionListener,SetMenu,HideMenu{
     //Declares a confirm button
     JButton confirm = new JButton("Confirm");
-    //Declares an array of difficulties
-    String[] difficulty = {"easy","Normal","Hard"};
-    //Declares a combobox
-    JComboBox<String> diff = new JComboBox<String>(difficulty);
-    //A variable that stores the choice from the comboBox
-    String choice;
-
+    //Set the dimension size of the buttons
+    Dimension dim = new Dimension(200,40);
+    //Declares a JComboBox
+    JComboBox diff = new JComboBox();
+    
     //A method to set up the menu using the temp gui
     public void setMenu(){
         setHeading("Settings");
         Gui();
-        panel.setLayout(null);
+        panel.setLayout(new BorderLayout());
         addButtons();
     }
 
@@ -25,9 +24,9 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
     }
 
     public void addButtons(){
-        confirm.setBounds(68,100,200,40);
         confirm.addActionListener(this);
-        panel.add(confirm);
+        confirm.setPreferredSize(dim);
+        panel.add(confirm, BorderLayout.SOUTH);
     }
 
     @Override
@@ -38,6 +37,4 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
             hideMenu();
         }
     }
-
-
 }
