@@ -1,3 +1,5 @@
+import javafx.scene.control.skin.LabeledSkinBase;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,12 +11,12 @@ public class MainGui extends JFrame {
     //Declare the JPanel
     JPanel panel = new JPanel();
 
-    //Mutator method to set the heading
+    //Mutator method to set the value of heading
     public void setHeading(String heading) {
         this.heading = heading;
     }
 
-    //Accessor method to get the heading
+    //Accessor method that gets the value of heading
     public String getHeading() {
         return heading;
     }

@@ -21,21 +21,13 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
         Gui();
         panel.setLayout(null);
         addingButtons();
-        addTitle();
+        setTitle("Snake Game");
+        addLabel();
     }
 
     //A method that will hide the previous gui
     public void hideMenu() {
         setVisible(false);
-    }
-
-    //This method will add the title label
-    public void addTitle(){
-        title.setBounds(90,50,200,40);
-        title.setFont(new Font("monospaced",Font.PLAIN,25));
-        title.setForeground(Color.white);
-        title.setVisible(true);
-        panel.add(title);
     }
 
     //This method adds the buttons and their action listeners
@@ -52,6 +44,14 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
         panel.add(play);
         panel.add(settings);
         panel.add(exit);
+    }
+
+    public void addLabel(){
+        title.setBounds(90,50,200,40);
+        title.setFont(new Font("monospaced",Font.PLAIN,25));
+        title.setForeground(Color.white);
+        title.setVisible(true);
+        panel.add(title);
     }
 
     //https://stackoverflow.com/questions/5936261/how-to-add-action-listener-that-listens-to-multiple-buttons
