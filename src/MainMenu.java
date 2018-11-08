@@ -6,16 +6,16 @@ import java.awt.event.ActionListener;
 //Class that makes the main menu
 public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu{
 
-    //Declares the play button
+    //Declares a Jbutton that wen clicked will take you to the play screen
     JButton play = new JButton("Play");
-    //Declares the settings button
+    //Declares a JButton that when clicked will take you to the settings menu
     JButton settings = new JButton("Settings");
-    //Declares an exit button
+    //Declares a JButton that when clicked will exit the game
     JButton exit = new JButton("Exit");
-    //Declares a label
+    //Declares a JLabel that will display the name of the game
     JLabel title = new JLabel("Snake Game");
 
-    //Method to set the menu using the temp gui
+    //Method that sets the menu
     public void setMenu(){
         setHeading("Main Menu");
         Gui();
@@ -24,12 +24,12 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
         addLabel();
     }
 
-    //A method that will hide the previous gui
+    //Method that will hide the previous gui
     public void hideMenu() {
         setVisible(false);
     }
 
-    //This method adds the buttons and their action listeners
+    //Metjod that will alter the play,settings and exit buttons and add them to the panel
     public void addingButtons(){
         play.setBounds(68,150,200,40);
         play.addActionListener(this);
@@ -51,6 +51,7 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
         panel.add(exit);
     }
 
+    //Method that will alter the title label and add it to the panel
     public void addLabel(){
         title.setBounds(90,50,200,40);
         title.setFont(new Font("monospaced",Font.PLAIN,25));
@@ -60,8 +61,7 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
     }
 
     //https://stackoverflow.com/questions/5936261/how-to-add-action-listener-that-listens-to-multiple-buttons
-    //This method will determine what will happen when you press one of the buttons
-    @Override
+    //Method will determine what will happen when you press one of the buttons
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == play){
             PlayMenu menu = new PlayMenu();

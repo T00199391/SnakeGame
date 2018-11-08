@@ -1,14 +1,12 @@
-import javafx.scene.control.skin.LabeledSkinBase;
-
 import javax.swing.*;
 import java.awt.*;
 
 //Class that makes a temp gui and extends the JFrame class
 public class MainGui extends JFrame {
 
-    //Variable used to store the heading value
+    //The heading variable is used to store the value of the title for each Gui
     public String heading;
-    //Declare the JPanel
+    //This is to declare the JPanel
     JPanel panel = new JPanel();
 
     //Mutator method to set the value of heading
@@ -21,16 +19,16 @@ public class MainGui extends JFrame {
         return heading;
     }
 
-    //Method that makes the gui
+    //Method that makes the temp gui for all the menu's
     public void Gui(){
-        //Frame
+        //This alters the frame for the Gui
         setTitle(getHeading());
         setLocation(200,200);
         setSize(350,500);
         setVisible(true);
         setResizable(false);
 
-        //Panel
+        //This alters the panel for the Gui
         panel.setBackground(Color.black);
         setContentPane(panel);
     }
