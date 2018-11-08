@@ -70,9 +70,6 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
         panel.add(diffLabel);
     }
 
-    public void addInvertedColour(){
-        
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == confirm){
@@ -91,13 +88,13 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
     //https://stackoverflow.com/questions/1090098/newline-in-jlabel
     public void difficultyChoice(){
         if(choice.equals("Easy")){
-            diffLabel.setText("<html>Easy Mode<br/>Speed Of Snake: Slow<br/>Length Of Snake: Small</html>");
+            diffLabel.setText("<html>Easy Mode<br/>Start speed Of Snake: Slow<br/>Length Of Snake: Small</html>");
         }
         else if(choice.equals("Normal")){
-            diffLabel.setText("<html>Normal Mode<br/>Speed Of Snake: Normal<br/>Length Of Snake: Medium</html>");
+            diffLabel.setText("<html>Normal Mode<br/>Start speed Of Snake: Normal<br/>Length Of Snake: Medium</html>");
         }
         else{
-            diffLabel.setText("<html>Hard Mode<br/>Speed Of Snake: Fast<br/>Length Of Snake: Large</html>");
+            diffLabel.setText("<html>Hard Mode<br/>Start speed Of Snake: Fast<br/>Length Of Snake: Large</html>");
         }
     }
 }

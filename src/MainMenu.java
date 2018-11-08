@@ -21,7 +21,6 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
         Gui();
         panel.setLayout(null);
         addingButtons();
-        setTitle("Snake Game");
         addLabel();
     }
 
@@ -65,7 +64,9 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == play){
-            JOptionPane.showMessageDialog(null,"Play");
+            PlayMenu menu = new PlayMenu();
+            menu.setMenu();
+            hideMenu();
         }
         else if(e.getSource() == settings){
             SettingsMenu menu = new SettingsMenu();
