@@ -8,6 +8,8 @@ public class MainGui extends JFrame {
     public String heading;
     //This is to declare the JPanel
     JPanel panel = new JPanel();
+    //This will create a dimension object
+    public Dimension dim;
 
     //Mutator method to set the value of heading
     public void setHeading(String heading) {
@@ -21,9 +23,11 @@ public class MainGui extends JFrame {
 
     //Method that makes the temp gui for all the menu's
     public void Gui(){
+        //This sets the dimension object to be of the size of the screen
+        dim = Toolkit.getDefaultToolkit().getScreenSize();
         //This alters the frame for the Gui
         setTitle(getHeading());
-        setLocation(200,200);
+        setLocation(dim.width / 2 - getWidth() / 2, dim.height / 2 - getHeight() / 2);
         setSize(350,500);
         setVisible(true);
         setResizable(false);
