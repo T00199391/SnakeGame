@@ -18,7 +18,8 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
     //Method that sets the menu
     public void setMenu(){
         setHeading("Main Menu");
-        Gui();
+        JFameGui();
+        JPanelGui();
         panel.setLayout(null);
         addingButtons();
         addLabel();

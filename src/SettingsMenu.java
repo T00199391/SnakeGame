@@ -22,7 +22,8 @@ public class SettingsMenu extends MainGui implements ActionListener,SetMenu,Hide
     //A method to sets the menu
     public void setMenu(){
         setHeading("Settings");
-        Gui();
+        JFameGui();
+        JPanelGui();
         panel.setLayout(null);
         addButtons();
         addDiffComboBox();

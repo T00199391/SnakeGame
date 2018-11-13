@@ -12,7 +12,8 @@ public class GameOver extends MainGui implements ActionListener,SetMenu,HideMenu
     //Method that sets the menu
     public void setMenu() {
         setHeading("Snake Game");
-        Gui();
+        JFameGui();
+        JPanelGui();
         gameOver();
     }
 

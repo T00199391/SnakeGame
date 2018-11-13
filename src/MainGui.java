@@ -22,18 +22,22 @@ public class MainGui extends JFrame {
     }
 
     //Method that makes the temp gui for all the menu's
-    public void Gui(){
+    public void JFameGui(){
         //This sets the dimension object to be of the size of the screen
         dim = Toolkit.getDefaultToolkit().getScreenSize();
         //This alters the frame for the Gui
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle(getHeading());
-        setLocation(dim.width / 2 - getWidth() / 2, dim.height / 2 - getHeight() / 2);
         setSize(350,500);
+        //This will make the jframes location be at the center of the screen
+        setLocation(dim.width / 2 - getWidth() / 2, dim.height / 2 - getHeight() / 2);
         setVisible(true);
         setResizable(false);
+    }
 
+    public void JPanelGui(){
         //This alters the panel for the Gui
         panel.setBackground(Color.black);
-        setContentPane(panel);
+        add(panel);
     }
 }
