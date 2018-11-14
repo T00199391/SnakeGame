@@ -67,7 +67,7 @@ public class MainMenu extends MainGui implements ActionListener,SetMenu,HideMenu
         if(e.getSource() == play){
             PlayMenu menu = new PlayMenu();
             menu.setMenu();
-            hideMenu();
+            //hideMenu();
         }
         else if(e.getSource() == settings){
             SettingsMenu menu = new SettingsMenu();

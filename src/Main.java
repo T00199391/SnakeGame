@@ -2,7 +2,7 @@
 public class Main{
     public static void main(String[] args) {
         //This class the MainMenu class
-        MainMenu menu = new MainMenu();
+        PlayMenu menu = new PlayMenu();
         menu.setMenu();
     }
 }
