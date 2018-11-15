@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GameOver extends MainGui implements ActionListener,SetMenu,HideMenu {
+public class GameOver extends MainGui implements ActionListener,HideMenu {
     //Declares a JButton that that takes you back to the main menu when you lose the game
     JButton close = new JButton("Close");
     //Declares a JLabel that shows the Game Over text
@@ -11,9 +11,6 @@ public class GameOver extends MainGui implements ActionListener,SetMenu,HideMenu
 
     //Method that sets the menu
     public void setMenu() {
-        setHeading("Snake Game");
-        JFameGui();
-        JPanelGui();
         gameOver();
     }
 
@@ -50,7 +47,6 @@ public class GameOver extends MainGui implements ActionListener,SetMenu,HideMenu
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==close){
             MainMenu menu = new MainMenu();
-            menu.setMenu();
             hideMenu();
         }
     }
