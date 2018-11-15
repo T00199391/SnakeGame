@@ -9,11 +9,15 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener {
 
     PlayPanel playPanel;
 
-    Timer timer = new Timer(20,this);
+    Timer timer = new Timer(0,this);
 
     public static Point head;
 
-    public static final int SCALE=10,UP=0,LEFT=1,DOWN=2,RIGHT=3;
+    public static final int SCALE=10;
+    public static final int UP=0;
+    public static final int LEFT=1;
+    public static final int DOWN=2;
+    public static final int RIGHT=3;
 
     public int direction,ticks;
 
@@ -31,7 +35,7 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener {
         ticks=0;
         direction=DOWN;
         head = new Point(3,3);
-        speed=10;
+        speed=50;
         timer.start();
     }
 
@@ -39,7 +43,9 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
         playPanel.repaint();
 
-        if(ticks%speed==0){
+        ticks++;
+
+        if(ticks%100==0){
             if(direction==UP)
             {
                 head = new Point(head.x,head.y-1);
