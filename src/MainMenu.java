@@ -56,7 +56,8 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
     //https://stackoverflow.com/questions/5936261/how-to-add-action-listener-that-listens-to-multiple-buttons
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == play){
-            System.out.print("Play");
+            PlayMenu menu = new PlayMenu();
+            hideMenu();
         }
         else if(e.getSource() == settings){
             SettingsMenu menu = new SettingsMenu();
