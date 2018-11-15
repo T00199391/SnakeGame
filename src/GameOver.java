@@ -3,25 +3,24 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GameOver extends MainGui implements ActionListener,HideMenu {
+public class GameOver implements ActionListener{
     //Declares a JButton that that takes you back to the main menu when you lose the game
     JButton close = new JButton("Close");
     //Declares a JLabel that shows the Game Over text
     JLabel gameOver = new JLabel("GAME OVER");
 
-    //Method that sets the menu
-    public void setMenu() {
-        gameOver();
-    }
+    MainGui gui = new MainGui();
 
-    //Method that will hide the previous gui
-    public void hideMenu() {
-        setVisible(false);
+    //Method that sets the menu
+    public GameOver(){
+        gameOver();
     }
 
     //Method that sets the game over screen
     public void gameOver(){
-        panel.setLayout(null);
+        gui.panel.setBackground(Color.black);
+        gui.add(gui.panel);
+        gui.panel.setLayout(null);
         closeGame();
         gameOverLabel();
     }
@@ -32,7 +31,7 @@ public class GameOver extends MainGui implements ActionListener,HideMenu {
         close.setBackground(Color.white);
         close.setForeground(Color.black);
         close.addActionListener(this);
-        panel.add(close);
+        gui.panel.add(close);
     }
 
     //Method that alters the gameOver label and adds it to the panel
@@ -40,14 +39,13 @@ public class GameOver extends MainGui implements ActionListener,HideMenu {
         gameOver.setBounds(30,150,300,60);
         gameOver.setFont(new Font("monospaced",Font.PLAIN,50));
         gameOver.setForeground(Color.white);
-        panel.add(gameOver);
+        gui.panel.add(gameOver);
     }
 
     //Method will determine what will happen when you press the close button
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==close){
-            MainMenu menu = new MainMenu();
-            hideMenu();
+            System.exit(0);
         }
     }
 }

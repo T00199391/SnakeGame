@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class PlayMenu extends MainGui implements ActionListener, KeyListener {
+public class PlayMenu extends MainGui implements ActionListener, KeyListener,HideMenu{
 
     PlayPanel playPanel;
 
@@ -13,15 +13,13 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener {
 
     public static Point head;
 
-    public static final int SCALE=10;
-    public static final int UP=0;
-    public static final int LEFT=1;
-    public static final int DOWN=2;
-    public static final int RIGHT=3;
+    public static final int SCALE=10,UP=0,LEFT=1,DOWN=2,RIGHT=3;
 
     public int direction,ticks;
 
-    public static int speed;
+    public static int speed =70;
+
+    public boolean over;
 
     public PlayMenu(){
         setTitle("Snake Game");
@@ -34,8 +32,8 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener {
     public void gameBegins(){
         ticks=0;
         direction=DOWN;
+        over=false;
         head = new Point(3,3);
-        speed=50;
         timer.start();
     }
 
@@ -45,7 +43,7 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener {
 
         ticks++;
 
-        if(ticks%100==0){
+        if(ticks%speed==0 && !over){
             if(direction==UP)
             {
                 head = new Point(head.x,head.y-1);
@@ -66,8 +64,18 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener {
     }
 
     @Override
+    public void hideMenu() {
+        setVisible(false);
+    }
+
+    @Override
     public void keyPressed(KeyEvent e) {
         int i = e.getKeyCode();
+
+        if(i==KeyEvent.VK_SPACE) {
+            GameOver gameOver = new GameOver();
+            hideMenu();
+        }
 
         if(i==KeyEvent.VK_W){
             direction = UP;
