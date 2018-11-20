@@ -14,5 +14,9 @@ public class PlayPanel extends JPanel {
 
         g.setColor(Color.red);
         g.fillRect(PlayMenu.cherry.x*10,PlayMenu.cherry.y*10,PlayMenu.SCALE,PlayMenu.SCALE);
+
+        String scoreText = "Score: " + PlayMenu.score;
+        g.setColor(Color.green);
+        g.drawString(scoreText,(getWidth()/2)-20,10);
     }
 }

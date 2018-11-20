@@ -26,6 +26,8 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
     public Random random;
 
+    public static int score;
+
     public PlayMenu(){
         setTitle("Snake Game");
         add(playPanel = new PlayPanel());
@@ -41,6 +43,7 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
         head = new Point(0,0);
         random = new Random();
         cherry = new Point(random.nextInt(31),random.nextInt(46));
+        score =0;
         timer.start();
     }
 
@@ -50,7 +53,7 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
         ticks++;
 
-        if(ticks%10==0 && !over && !start){
+        if(ticks%speed==0 && !over && !start){
             if(direction==UP)
             {
                 head = new Point(head.x,head.y-1);
@@ -71,6 +74,7 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
         collisionWithCherry();
         gameOver();
+        speedIncrease();
 
         if(over){
             timer.stop();
@@ -87,10 +91,6 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
     @Override
     public void keyPressed(KeyEvent e) {
         int i = e.getKeyCode();
-
-        if(i==KeyEvent.VK_SPACE) {
-
-        }
 
         if(i==KeyEvent.VK_ENTER){
             System.out.print(head.x);
@@ -123,6 +123,7 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
     public void collisionWithCherry(){
         if(head.equals(cherry)){
+            score++;
             cherry.setLocation(random.nextInt(31),random.nextInt(45));
         }
     }
@@ -130,11 +131,23 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
     public void gameOver(){
         if(head.x<0)
             over = !over;
-        if(head.x>31)
+        if(head.x>32)
             over = !over;
         if(head.y<0)
             over = !over;
-        if(head.y>44)
+        if(head.y>45)
             over = !over;
+    }
+
+    public void speedIncrease(){
+        if(score>=3 && score<6){
+            speed=8;
+        }
+        if(score>=6 && score<9){
+            speed=6;
+        }
+        if(score>=9 && score<12){
+            speed=4;
+        }
     }
 }
