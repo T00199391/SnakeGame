@@ -81,17 +81,17 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
     private void difficultyChoice(){
         if(choice.equals("Easy")){
             diffLabel.setText("<html>Easy Mode<br/>Start speed Of Snake: Slow<br/>Length Of Snake: Small</html>");
-            PlayMenu.speed = 90;
+            PlayMenu.speed = 15;
             diff.setSelectedIndex(0);
         }
         else if(choice.equals("Normal")){
             diffLabel.setText("<html>Normal Mode<br/>Start speed Of Snake: Normal<br/>Length Of Snake: Medium</html>");
-            PlayMenu.speed = 70;
+            PlayMenu.speed = 10;
             diff.setSelectedIndex(1);
         }
         else{
             diffLabel.setText("<html>Hard Mode<br/>Start speed Of Snake: Fast<br/>Length Of Snake: Large</html>");
-            PlayMenu.speed = 50;
+            PlayMenu.speed = 7;
             diff.setSelectedIndex(2);
         }
     }

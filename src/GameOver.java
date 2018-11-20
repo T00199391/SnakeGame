@@ -18,6 +18,7 @@ public class GameOver implements ActionListener{
 
     //Method that sets the game over screen
     public void gameOver(){
+        gui.setTitle("Game Over");
         gui.panel.setBackground(Color.black);
         gui.add(gui.panel);
         gui.panel.setLayout(null);

@@ -10,6 +10,9 @@ public class PlayPanel extends JPanel {
         g.fillRect(0,0,350,500);
 
         g.setColor(Color.white);
-        g.fillRect(PlayMenu.head.x,PlayMenu.head.y,PlayMenu.SCALE,PlayMenu.SCALE);
+        g.fillRect(PlayMenu.head.x*10,PlayMenu.head.y*10,PlayMenu.SCALE,PlayMenu.SCALE);
+
+        g.setColor(Color.red);
+        g.fillRect(PlayMenu.cherry.x*10,PlayMenu.cherry.y*10,PlayMenu.SCALE,PlayMenu.SCALE);
     }
 }
