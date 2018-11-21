@@ -7,31 +7,41 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * This method will create the game board
+ * It will create the snake and the cherries
+ * It extends the MainGui class and implements ActionListener, KeyListener and HideMenu
+ */
 public class PlayMenu extends MainGui implements ActionListener, KeyListener,HideMenu{
 
     PlayPanel playPanel;
 
     GameOver gameOver;
 
+    /**
+     * This creates a timer so the game can run
+     */
     public Timer timer = new Timer(20,this);
 
+    /**
+     * This creates the variable for the head and the cherry
+     * It will make it of type Point
+     */
     public static Point head,cherry;
 
+    //This creates the scale of the snake and cherries and gives each direction there own number so you can ref them when controlling the game
     public static final int SCALE=10,UP=0,LEFT=1,DOWN=2,RIGHT=3;
 
     public int direction,ticks;
 
-    public static int speed = 7;
+    //This will set a default speed and tail value at the start of the game unless you set the difficulty in the settings
+    public static int speed = 8,tail = 5,score;
 
     public boolean over,start;
 
     public Random random;
 
-    public static int score;
-
     public static ArrayList<Point> parts = new ArrayList<Point>();
-
-    public static int tail = 5;
 
     public PlayMenu(){
         setTitle("Snake Game");
@@ -87,13 +97,9 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
         collisionWithCherry();
         gameOver();
-        //speedIncrease();
+        increaseSpeed();
 
-        if(over){
-            timer.stop();
-            gameOver = new GameOver();
-            hideMenu();
-        }
+
     }
 
     @Override
@@ -110,16 +116,16 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
             start = !start;
         }
 
-        if(i==KeyEvent.VK_W){
+        if(i==KeyEvent.VK_W && direction!=DOWN){
             direction = UP;
         }
-        if(i==KeyEvent.VK_A){
+        if(i==KeyEvent.VK_A && direction!=RIGHT){
             direction = LEFT;
         }
-        if(i==KeyEvent.VK_S){
+        if(i==KeyEvent.VK_S && direction!=UP){
             direction = DOWN;
         }
-        if(i==KeyEvent.VK_D){
+        if(i==KeyEvent.VK_D && direction!=LEFT){
             direction = RIGHT;
         }
     }
@@ -151,23 +157,32 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
             over = !over;
         if(head.y>45)
             over = !over;
+
+        for(Point point : parts){
+            if(head.equals(point)){
+                over = !over;
+            }
+        }
+
+        if(over){
+            timer.stop();
+            gameOver = new GameOver();
+            hideMenu();
+        }
     }
 
-    /*public void speedIncrease(){
-        if(score>=3 && score<6){
-            speed-=2;
+    public static void increaseSpeed(){
+
+        ControlSpeed controlSpeed = new ControlSpeed();
+
+        if(SettingsMenu.speedChoice==1){
+            controlSpeed.easySpeed();
         }
-        else if(score>=6 && score<9){
-            speed-=2;
+        if(SettingsMenu.speedChoice==2){
+            controlSpeed.normalSpeed();
         }
-        else if(score>=9 && score<12){
-            speed-=2;
+        if(SettingsMenu.speedChoice==3){
+            controlSpeed.hardSpeed();
         }
-        else if(score>=12 && score<20){
-            speed-=2;
-        }
-        else{
-            speed-=2;
-        }
-    }*/
+    }
 }

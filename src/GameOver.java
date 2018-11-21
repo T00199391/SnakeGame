@@ -3,30 +3,34 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class will display the game over screen when called
+ */
 public class GameOver implements ActionListener{
-    //Declares a JButton that that takes you back to the main menu when you lose the game
+
     JButton close = new JButton("Close");
-    //Declares a JLabel that shows the Game Over text
+
     JLabel gameOver = new JLabel("GAME OVER");
 
     MainGui gui = new MainGui();
 
-    //Method that sets the menu
+    /**
+     * GameOver Constructor that will display the game over gui
+     * It will call the methods closeGame and gameOverLabel
+     */
     public GameOver(){
-        gameOver();
-    }
-
-    //Method that sets the game over screen
-    public void gameOver(){
         gui.setTitle("Game Over");
         gui.panel.setBackground(Color.black);
-        gui.add(gui.panel);
         gui.panel.setLayout(null);
         closeGame();
         gameOverLabel();
     }
 
-    //Method that alters the close button adn adds it to the panel
+    /**
+     * This method will create a close button
+     * It will add an ActionListener to the button
+     * It will add the button to the panel
+     */
     public void closeGame(){
         close.setBounds(68,400,200,40);
         close.setBackground(Color.white);
@@ -35,7 +39,10 @@ public class GameOver implements ActionListener{
         gui.panel.add(close);
     }
 
-    //Method that alters the gameOver label and adds it to the panel
+    /**
+     * This method will create the label that displays the game over dialog
+     * It will add the label to the panel
+     */
     public void gameOverLabel(){
         gameOver.setBounds(30,150,300,60);
         gameOver.setFont(new Font("monospaced",Font.PLAIN,50));
@@ -43,7 +50,6 @@ public class GameOver implements ActionListener{
         gui.panel.add(gameOver);
     }
 
-    //Method will determine what will happen when you press the close button
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==close){
             System.exit(0);

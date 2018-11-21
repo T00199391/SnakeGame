@@ -17,6 +17,8 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
 
     private JLabel diffLabel = new JLabel();
 
+    public static int speedChoice = 2;
+
     public SettingsMenu(){
         setTitle("Settings");
         panel.setLayout(null);
@@ -53,7 +55,7 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
     }
 
     private void addDifficultyLabel(){
-        diffLabel.setBounds(68,160,300,70);
+        diffLabel.setBounds(60,200,300,130);
         diffLabel.setFont(new Font("monospaced",Font.PLAIN,15));
         diffLabel.setForeground(Color.white);
         diffLabel.setVisible(true);
@@ -79,20 +81,28 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
 
     //https://stackoverflow.com/questions/1090098/newline-in-jlabel
     private void difficultyChoice(){
+
         if(choice.equals("Easy")){
-            diffLabel.setText("<html>Easy Mode<br/>Start speed Of Snake: Slow<br/>Length Of Snake: Small</html>");
-            PlayMenu.speed = 15;
+            diffLabel.setText("<html>Easy Mode<br/>Start speed Of Snake: Slow<br/>Length Of Snake: Small<br><br>This mode is when you just<br> want a chill game of snake</html>");
+            PlayMenu.speed = 10;
+            PlayMenu.tail = 3;
             diff.setSelectedIndex(0);
+            speedChoice=1;
+
         }
         else if(choice.equals("Normal")){
-            diffLabel.setText("<html>Normal Mode<br/>Start speed Of Snake: Normal<br/>Length Of Snake: Medium</html>");
-            PlayMenu.speed = 10;
+            diffLabel.setText("<html>Normal Mode<br/>Start speed Of Snake: Normal<br/>Length Of Snake: Medium<br><br>This mode is for everyone</html>");
+            PlayMenu.speed = 8;
+            PlayMenu.tail = 5;
             diff.setSelectedIndex(1);
+            speedChoice=2;
         }
         else{
-            diffLabel.setText("<html>Hard Mode<br/>Start speed Of Snake: Fast<br/>Length Of Snake: Large</html>");
-            PlayMenu.speed = 7;
+            diffLabel.setText("<html>Hard Mode<br/>Start speed Of Snake: Fast<br/>Length Of Snake: Large<br><br>This mode will be for people<br>who want a challenge</html>");
+            PlayMenu.speed = 6;
+            PlayMenu.tail = 7;
             diff.setSelectedIndex(2);
+            speedChoice=3;
         }
     }
 }
