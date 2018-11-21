@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class PlayMenu extends MainGui implements ActionListener, KeyListener,HideMenu{
@@ -20,13 +21,17 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
     public int direction,ticks;
 
-    public static int speed = 10;
+    public static int speed = 7;
 
     public boolean over,start;
 
     public Random random;
 
     public static int score;
+
+    public static ArrayList<Point> parts = new ArrayList<Point>();
+
+    public static int tail = 5;
 
     public PlayMenu(){
         setTitle("Snake Game");
@@ -36,6 +41,7 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
     }
 
     public void gameBegins(){
+        parts.clear();
         start=true;
         ticks=0;
         direction=DOWN;
@@ -54,6 +60,9 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
         ticks++;
 
         if(ticks%speed==0 && !over && !start){
+
+            parts.add(new Point(head.x,head.y));
+
             if(direction==UP)
             {
                 head = new Point(head.x,head.y-1);
@@ -70,11 +79,15 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
             {
                 head = new Point(head.x+1,head.y);
             }
+
+            if(parts.size()>tail){
+                parts.remove(0);
+            }
         }
 
         collisionWithCherry();
         gameOver();
-        speedIncrease();
+        //speedIncrease();
 
         if(over){
             timer.stop();
@@ -124,6 +137,7 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
     public void collisionWithCherry(){
         if(head.equals(cherry)){
             score++;
+            tail++;
             cherry.setLocation(random.nextInt(31),random.nextInt(45));
         }
     }
@@ -139,15 +153,21 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
             over = !over;
     }
 
-    public void speedIncrease(){
+    /*public void speedIncrease(){
         if(score>=3 && score<6){
-            speed=8;
+            speed-=2;
         }
-        if(score>=6 && score<9){
-            speed=6;
+        else if(score>=6 && score<9){
+            speed-=2;
         }
-        if(score>=9 && score<12){
-            speed=4;
+        else if(score>=9 && score<12){
+            speed-=2;
         }
-    }
+        else if(score>=12 && score<20){
+            speed-=2;
+        }
+        else{
+            speed-=2;
+        }
+    }*/
 }
