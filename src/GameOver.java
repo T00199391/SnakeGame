@@ -4,7 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * This class will display the game over screen when called
+ * This class will display the game over screen when called from the PlayMenu
+ * @author Emma Fitzgerald T00199391
  */
 public class GameOver implements ActionListener{
 
@@ -24,7 +25,7 @@ public class GameOver implements ActionListener{
         gui.panel.setLayout(null);
         closeGame();
         gameOverLabel();
-    }
+    }//end constructor
 
     /**
      * This method will create a close button
@@ -37,7 +38,7 @@ public class GameOver implements ActionListener{
         close.setForeground(Color.black);
         close.addActionListener(this);
         gui.panel.add(close);
-    }
+    }//end method
 
     /**
      * This method will create the label that displays the game over dialog
@@ -48,11 +49,11 @@ public class GameOver implements ActionListener{
         gameOver.setFont(new Font("monospaced",Font.PLAIN,50));
         gameOver.setForeground(Color.white);
         gui.panel.add(gameOver);
-    }
+    }//end method
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==close){
+        if(e.getSource()==close)
             System.exit(0);
-        }
-    }
-}
+
+    }//end method
+}//end class

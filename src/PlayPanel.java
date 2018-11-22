@@ -1,8 +1,19 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The PlayPanel class will set up the layout of the panel for the PlayMenu class
+ * It will set the color of the snake and the cherries and paint them on the panel
+ * It will extend JPanel
+ */
 public class PlayPanel extends JPanel {
 
+    /**
+     * This method will create the paint the panel
+     * It will paint the snake and the cherries
+     * It will paint the score at the top of the panel
+     * It will paint the message to start the game once the space bar is pressed it will disappear
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -22,6 +33,12 @@ public class PlayPanel extends JPanel {
 
         String scoreText = "Score: " + PlayMenu.score;
         g.setColor(Color.green);
-        g.drawString(scoreText,(getWidth()/2)-20,10);
-    }
-}
+        g.drawString(scoreText,150,10);
+
+        String startGameText = "Press Space To Begin";
+        if(PlayMenu.start){
+            g.setColor(Color.green);
+            g.drawString(startGameText,110,200);
+        }//end if
+    }//end paintComponent
+}//end class

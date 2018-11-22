@@ -3,6 +3,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The SettingsMenu will display a combo box to show the different difficulties of the game
+ * It will give you a description on the difficulties
+ * @author Emma Fitzgerlad T00199391
+ */
 public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
 
     private JButton confirm = new JButton("Confirm");
@@ -19,6 +24,11 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
 
     public static int speedChoice = 2;
 
+    /**
+     * SettingsMenu Constructor will display the gui
+     * It will set the titer of the gui
+     * It will call the methods addButtons(),addDiffComboBox(),addTitleLabel() and addDifficultyLabel()
+     */
     public SettingsMenu(){
         setTitle("Settings");
         panel.setLayout(null);
@@ -26,16 +36,26 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
         addDiffComboBox();
         addTitleLabel();
         addDifficultyLabel();
-    }
+    }//end constructor
 
+    /**
+     * This method will create the button
+     * It will add the button to the panel
+     * It will add an actionListener to the button
+     */
     private void addButtons(){
         confirm.addActionListener(this);
         confirm.setBounds(68,400,200,40);
         confirm.setBackground(Color.white);
         confirm.setForeground(Color.black);
         panel.add(confirm);
-    }
+    }//end method
 
+    /**
+     * This method will create the combo box
+     * It will add the combo box to the panel
+     * It will add an actionListener to the combo box
+     */
     private void addDiffComboBox(){
         diff.setBounds(68,100,200,40);
         diff.setFont(new Font("monospaced",Font.PLAIN,15));
@@ -44,23 +64,31 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
         diff.setBackground(Color.white);
         diff.setForeground(Color.black);
         panel.add(diff);
-    }
+    }//end method
 
+    /**
+     * This method will create the label
+     * It will add the label to the panel
+     */
     private void addTitleLabel(){
         titleLabel.setBounds(40,20,300,40);
         titleLabel.setFont(new Font("monospaced",Font.PLAIN,25));
         titleLabel.setForeground(Color.white);
         titleLabel.setVisible(true);
         panel.add(titleLabel);
-    }
+    }//end method
 
+    /**
+     * This method will create the label describing the difficulties
+     * It will add the label to the panel
+     */
     private void addDifficultyLabel(){
         diffLabel.setBounds(60,200,300,130);
         diffLabel.setFont(new Font("monospaced",Font.PLAIN,15));
         diffLabel.setForeground(Color.white);
         diffLabel.setVisible(true);
         panel.add(diffLabel);
-    }
+    }//end method
 
     public void hideMenu(){
         setVisible(false);
@@ -76,9 +104,12 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
             JComboBox cb = (JComboBox)e.getSource();
             choice = (String)cb.getSelectedItem();
             difficultyChoice();
-        }
-    }
+        }//end if
+    }//end actionPerformed
 
+    /**
+     * This method will set the size of the snake and the speed of the snake depending in the difficultly chosen
+     */
     //https://stackoverflow.com/questions/1090098/newline-in-jlabel
     private void difficultyChoice(){
 
@@ -103,6 +134,6 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
             PlayMenu.tail = 7;
             diff.setSelectedIndex(2);
             speedChoice=3;
-        }
-    }
-}
+        }//end if
+    }//end method
+}//end class

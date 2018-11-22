@@ -4,6 +4,7 @@ import java.awt.*;
 /**
  * This class creates a template gui for the whole game
  * It extends JFrame and uses a JPanel
+ * @author Emma Fitzgerald T00199391
  */
 public class MainGui extends JFrame {
 
@@ -11,6 +12,9 @@ public class MainGui extends JFrame {
 
     JPanel panel = new JPanel();
 
+    /**
+     * MainGui Constructor will create the gui
+     */
     public MainGui(){
         /**
          * This variable is used to hold the size of the screen
@@ -26,5 +30,5 @@ public class MainGui extends JFrame {
         setResizable(false);
         panel.setBackground(Color.black);
         add(panel);
-    }
-}
+    }//end constructor
+}//end class

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 /**
  * This class makes the main menu for the game.
  * It extends the MainGui class and implements ActionListener and HideMenu
+ * @author Emma Fitzgerald T00199391
  */
 public class MainMenu  extends MainGui implements ActionListener,HideMenu {
 
@@ -27,7 +28,7 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
         panel.setLayout(null);
         addingButtons();
         addLabel();
-    }
+    }//end constructor
 
     /**
      * This method will make the play, settings and exit button
@@ -53,7 +54,7 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
         panel.add(play);
         panel.add(settings);
         panel.add(exit);
-    }
+    }//end method
 
     /**
      * This method will make the label that displays the name of the game
@@ -64,7 +65,7 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
         title.setForeground(Color.white);
         title.setVisible(true);
         panel.add(title);
-    }
+    }//end method
 
     //This method will hide the current gui when called
     public void hideMenu() {
@@ -84,6 +85,6 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
         }
         else{
             System.exit(0);
-        }
-    }
-}
+        }//end if
+    }//end actionPerformed
+}//end class
