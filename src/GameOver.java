@@ -16,11 +16,15 @@ public class GameOver implements ActionListener{
 
     JLabel gameOver = new JLabel("GAME OVER");
 
+    JLabel nameLabel = new JLabel("Please Enter Name(4 characters)");
+
     MainGui gui = new MainGui();
 
     PlayersInfo leader;
 
-    String name,fileName;
+    String fileName;
+
+    JTextField textBox = new JTextField(4);
 
     /**
      * GameOver Constructor that will display the game over gui
@@ -32,7 +36,8 @@ public class GameOver implements ActionListener{
         gui.panel.setLayout(null);
         closeGame();
         gameOverLabel();
-        enterScore();
+        nameTextLabel();
+        textBox();
     }//end constructor
 
     /**
@@ -53,24 +58,43 @@ public class GameOver implements ActionListener{
      * It will add the label to the panel
      */
     public void gameOverLabel(){
-        gameOver.setBounds(30,150,300,60);
+        gameOver.setBounds(30,50,300,60);
         gameOver.setFont(new Font("monospaced",Font.PLAIN,50));
         gameOver.setForeground(Color.white);
         gui.panel.add(gameOver);
     }//end method
 
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==close)
-            System.exit(0);
-
+    public void nameTextLabel(){
+        nameLabel.setBounds(30,200,300,60);
+        nameLabel.setFont(new Font("monospaced",Font.PLAIN,15));
+        nameLabel.setForeground(Color.white);
+        gui.panel.add(nameLabel);
     }//end method
 
-    public void enterScore(){
-        do {
-            name = JOptionPane.showInputDialog("Enter name");
-        }while(name.equals(""));
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==close) {
+            if (textBox.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter your name");
+                return;
+            }
+            else if(textBox.getText().length()>4){
+                JOptionPane.showMessageDialog(null, "Name must be 4 characters or less");
+                return;
+            }
+            else{
+                enterScore();
+                System.exit(0);
+            }//end if
+        }//end if
+    }//end method
 
-        leader = new PlayersInfo(name,PlayMenu.score);
+    public void textBox(){
+        textBox.setBounds(90,250,150,20);
+        gui.panel.add(textBox);
+    }
+
+    public void enterScore(){
+        leader = new PlayersInfo(textBox.getText(),PlayMenu.score);
 
         if(SettingsMenu.numChoice==1){
             fileName = "src/Resources/easyScore.txt";

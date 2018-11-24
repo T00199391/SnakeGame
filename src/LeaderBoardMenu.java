@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class LeaderBoardMenu extends MainGui implements ActionListener,HideMenu{
 
@@ -11,13 +15,21 @@ public class LeaderBoardMenu extends MainGui implements ActionListener,HideMenu{
 
     private JComboBox<String> diff = new JComboBox<String>(difficulty);
 
-    private String choice;
+    private String choice,labelName,labelScore,labelString,fileName;
+
+    private JLabel scoreLabel = new JLabel();
+
+    private JLabel textLabel = new JLabel("Leader Board");
+
+    int count = 0;
 
     public LeaderBoardMenu(){
         setTitle("LeaderBoardMenu");
         panel.setLayout(null);
         addButtons();
         addDiffComboBox();
+        addScoreLabel();
+        addTextLabel();
     }//end constructor
 
     private void addButtons(){
@@ -42,17 +54,66 @@ public class LeaderBoardMenu extends MainGui implements ActionListener,HideMenu{
         setVisible(false);
     }
 
+    private void addScoreLabel(){
+        scoreLabel.setBounds(80,200,300,200);
+        scoreLabel.setFont(new Font("monospaced",Font.PLAIN,15));
+        scoreLabel.setForeground(Color.white);
+        scoreLabel.setVisible(true);
+        panel.add(scoreLabel);
+    }//end method
+
+    private void addTextLabel(){
+        textLabel.setBounds(75,100,300,200);
+        textLabel.setFont(new Font("monospaced",Font.PLAIN,25));
+        textLabel.setForeground(Color.white);
+        textLabel.setVisible(true);
+        panel.add(textLabel);
+    }//end method
+
     private void leaderDifficulty(){
 
         if(choice.equals("Easy")){
-            System.out.println("hi e");
+            labelString="";
+            labelName="";
+            labelScore="";
+            fileName = "src/Resources/easyScore.txt";
         }
         else if(choice.equals("Normal")){
-            System.out.println("hi n");
+            labelString="";
+            labelName="";
+            labelScore="";
+            fileName = "src/Resources/normalScore.txt";
         }
         else{
-            System.out.println("hi h");
+            labelString="";
+            labelName="";
+            labelScore="";
+            fileName = "src/Resources/hardScore.txt";
         }//end if
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))){
+            String line;
+
+            while ((line = br.readLine()) != null && count!=10){
+                count++;
+                if(count%2==0)
+                    labelScore += "Score: " + line + "<br>";
+                else
+                    labelName += "Name: " + line;
+
+                labelString += String.format("%-15s%-15s",labelName,labelScore);
+
+                labelScore="";
+                labelName="";
+            }
+            count=0;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        scoreLabel.setText("<html>" + labelString + "</html>");
     }//end method
 
     public void actionPerformed(ActionEvent e) {

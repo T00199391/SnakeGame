@@ -24,6 +24,6 @@ public class PlayersInfo {
     }
 
     public String toString(){
-        return "Name: " + getUserName() + "\tScore: " + getUserScore();
+        return getUserName() + "\n" + getUserScore();
     }
 }
