@@ -14,6 +14,8 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
 
     private JButton settings = new JButton("Settings");
 
+    private JButton leaderBoard = new JButton("LeaderBoard");
+
     private JButton exit = new JButton("Exit");
 
     private JLabel title = new JLabel("Snake Game");
@@ -36,31 +38,37 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
      * It will add the buttons to the panel once the method is called
      */
     private void addingButtons(){
-        play.setBounds(68,150,200,40);
+        play.setBounds(68,100,200,40);
         play.addActionListener(this);
         play.setBackground(Color.white);
         play.setForeground(Color.black);
 
-        settings.setBounds(68,250,200,40);
+        settings.setBounds(68,200,200,40);
         settings.addActionListener(this);
         settings.setBackground(Color.white);
         settings.setForeground(Color.black);
 
-        exit.setBounds(68,350,200,40);
+        leaderBoard.setBounds(68,300,200,40);
+        leaderBoard.addActionListener(this);
+        leaderBoard.setBackground(Color.white);
+        leaderBoard.setForeground(Color.black);
+
+        exit.setBounds(68,400,200,40);
         exit.addActionListener(this);
         exit.setBackground(Color.white);
         exit.setForeground(Color.black);
 
         panel.add(play);
         panel.add(settings);
+        panel.add(leaderBoard);
         panel.add(exit);
     }//end method
 
     /**
-     * This method will make the label that displays the name of the game
+     * This method will make the label that displays the userName of the game
      */
     private void addLabel(){
-        title.setBounds(90,50,200,40);
+        title.setBounds(90,20,200,40);
         title.setFont(new Font("monospaced",Font.PLAIN,25));
         title.setForeground(Color.white);
         title.setVisible(true);
@@ -81,6 +89,10 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
         }
         else if(e.getSource() == settings){
             SettingsMenu menu = new SettingsMenu();
+            hideMenu();
+        }
+        else if(e.getSource() == leaderBoard){
+            LeaderBoardMenu menu = new LeaderBoardMenu();
             hideMenu();
         }
         else{

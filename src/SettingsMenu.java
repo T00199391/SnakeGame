@@ -22,7 +22,7 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
 
     private JLabel diffLabel = new JLabel();
 
-    public static int speedChoice = 2;
+    public static int numChoice = 2;
 
     /**
      * SettingsMenu Constructor will display the gui
@@ -118,7 +118,7 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
             PlayMenu.speed = 10;
             PlayMenu.tail = 3;
             diff.setSelectedIndex(0);
-            speedChoice=1;
+            numChoice =1;
 
         }
         else if(choice.equals("Normal")){
@@ -126,14 +126,14 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
             PlayMenu.speed = 8;
             PlayMenu.tail = 5;
             diff.setSelectedIndex(1);
-            speedChoice=2;
+            numChoice =2;
         }
         else{
             diffLabel.setText("<html>Hard Mode<br/>Start speed Of Snake: Fast<br/>Length Of Snake: Large<br><br>This mode will be for people<br>who want a challenge</html>");
             PlayMenu.speed = 6;
             PlayMenu.tail = 7;
             diff.setSelectedIndex(2);
-            speedChoice=3;
+            numChoice =3;
         }//end if
     }//end method
 }//end class

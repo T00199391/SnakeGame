@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * This class will display the game over screen when called from the PlayMenu
@@ -15,6 +18,10 @@ public class GameOver implements ActionListener{
 
     MainGui gui = new MainGui();
 
+    PlayersInfo leader;
+
+    String name,fileName;
+
     /**
      * GameOver Constructor that will display the game over gui
      * It will call the methods closeGame and gameOverLabel
@@ -25,6 +32,7 @@ public class GameOver implements ActionListener{
         gui.panel.setLayout(null);
         closeGame();
         gameOverLabel();
+        enterScore();
     }//end constructor
 
     /**
@@ -56,4 +64,32 @@ public class GameOver implements ActionListener{
             System.exit(0);
 
     }//end method
+
+    public void enterScore(){
+        do {
+            name = JOptionPane.showInputDialog("Enter name");
+        }while(name.equals(""));
+
+        leader = new PlayersInfo(name,PlayMenu.score);
+
+        if(SettingsMenu.numChoice==1){
+            fileName = "src/Resources/easyScore.txt";
+        }
+        if(SettingsMenu.numChoice==2){
+            fileName = "src/Resources/normalScore.txt";
+        }
+        if(SettingsMenu.numChoice==3){
+            fileName = "src/Resources/hardScore.txt";
+        }
+
+        //https://stackoverflow.com/questions/1625234/how-to-append-text-to-an-existing-file-in-java
+        try {
+            FileWriter fw = new FileWriter(fileName,true);
+            PrintWriter pw = new PrintWriter(fw);
+            pw.println(leader.toString());
+            pw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }//end class

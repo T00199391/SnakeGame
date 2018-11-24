@@ -232,13 +232,13 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
         ControlSpeed controlSpeed = new ControlSpeed();
 
-        if(SettingsMenu.speedChoice==1)
+        if(SettingsMenu.numChoice ==1)
             controlSpeed.easySpeed();
 
-        if(SettingsMenu.speedChoice==2)
+        if(SettingsMenu.numChoice ==2)
             controlSpeed.normalSpeed();
 
-        if(SettingsMenu.speedChoice==3)
+        if(SettingsMenu.numChoice ==3)
             controlSpeed.hardSpeed();
 
     }//end method
