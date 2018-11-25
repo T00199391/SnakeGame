@@ -2,14 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.ArrayList;
 
-/**
- * This class will display the game over screen when called from the PlayMenu
- * @author Emma Fitzgerald T00199391
- */
 public class GameOver implements ActionListener{
 
     JButton close = new JButton("Close");
@@ -26,10 +21,13 @@ public class GameOver implements ActionListener{
 
     JTextField textBox = new JTextField(4);
 
-    /**
-     * GameOver Constructor that will display the game over gui
-     * It will call the methods closeGame and gameOverLabel
-     */
+    public ArrayList<String> names = new ArrayList<String>();
+
+    public ArrayList<Integer> scores = new ArrayList<Integer>();
+
+    int count=0,curScore=PlayMenu.score;
+
+
     public GameOver(){
         gui.setTitle("Game Over");
         gui.panel.setBackground(Color.black);
@@ -40,11 +38,6 @@ public class GameOver implements ActionListener{
         textBox();
     }//end constructor
 
-    /**
-     * This method will create a close button
-     * It will add an ActionListener to the button
-     * It will add the button to the panel
-     */
     public void closeGame(){
         close.setBounds(68,400,200,40);
         close.setBackground(Color.white);
@@ -53,10 +46,6 @@ public class GameOver implements ActionListener{
         gui.panel.add(close);
     }//end method
 
-    /**
-     * This method will create the label that displays the game over dialog
-     * It will add the label to the panel
-     */
     public void gameOverLabel(){
         gameOver.setBounds(30,50,300,60);
         gameOver.setFont(new Font("monospaced",Font.PLAIN,50));
@@ -94,10 +83,11 @@ public class GameOver implements ActionListener{
     }
 
     public void enterScore(){
-        leader = new PlayersInfo(textBox.getText(),PlayMenu.score);
+        leader = new PlayersInfo(textBox.getText(),curScore);
 
         if(SettingsMenu.numChoice==1){
             fileName = "src/Resources/easyScore.txt";
+
         }
         if(SettingsMenu.numChoice==2){
             fileName = "src/Resources/normalScore.txt";
@@ -106,11 +96,54 @@ public class GameOver implements ActionListener{
             fileName = "src/Resources/hardScore.txt";
         }
 
+        names.clear();
+        scores.clear();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))){
+            String line;
+
+            while ((line = br.readLine()) != null){
+                count++;
+                if(count%2==0)
+                    scores.add(Integer.parseInt(line));
+                else
+                    names.add(line);
+            }
+            count=0;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int increment=names.size()-1;
+
+        for(int i=0;i<names.size();i++){
+            if (curScore >= scores.get(i)) {
+                while (increment > i) {
+                    names.set(increment,names.get(increment-1));
+                    scores.set(increment,scores.get(increment-1));
+                    increment--;
+                }
+                scores.set(i, curScore);
+                names.set(i,textBox.getText());
+            }
+
+            if(names.size()>5){
+                names.remove(names.size());
+                scores.remove(scores.size());
+            }
+        }
+
         //https://stackoverflow.com/questions/1625234/how-to-append-text-to-an-existing-file-in-java
         try {
-            FileWriter fw = new FileWriter(fileName,true);
+            FileWriter fw = new FileWriter(fileName);
             PrintWriter pw = new PrintWriter(fw);
-            pw.println(leader.toString());
+            for(int i=0;i<names.size();i++){
+                pw.println(names.get(i));
+                pw.println(scores.get(i));
+            }
             pw.close();
         } catch (IOException e) {
             e.printStackTrace();

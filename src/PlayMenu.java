@@ -1,3 +1,9 @@
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+import javafx.scene.media.Media;
+import javafx.embed.swing.JFXPanel;
+import javafx.application.Platform;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +24,10 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
     private PlayPanel playPanel;
 
     private GameOver gameOver;
+
+    static MediaPlayer mediaPlayer;
+
+    String audioFile = "src/Resources/hitCherry.mp3";
 
     /**
      * This creates a timer so the game can run
@@ -189,6 +199,7 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
      */
     private void collisionWithCherry(){
         if(head.equals(cherry)){
+            playAudio(audioFile);
             score++;
             tail++;
             cherry.setLocation(random.nextInt(29),random.nextInt(44));
@@ -242,4 +253,22 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
             controlSpeed.hardSpeed();
 
     }//end method
+
+    /*Code researched and written by John Brosnan who sent it on for use with the audio aspects of the project*/
+    public static void playAudio(String path)
+    {
+        Media audioClip = new Media(new File(path).toURI().toString());
+
+        mediaPlayer = new MediaPlayer(audioClip);
+
+        try
+        {
+            mediaPlayer.play();
+        }
+        catch(Exception e)
+        {
+            System.out.println("The audio file " + path + " could not be played!");
+        }
+
+    }
 }//end class

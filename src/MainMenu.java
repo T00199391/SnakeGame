@@ -3,11 +3,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * This class makes the main menu for the game.
- * It extends the MainGui class and implements ActionListener and HideMenu
- * @author Emma Fitzgerald T00199391
- */
 public class MainMenu  extends MainGui implements ActionListener,HideMenu {
 
     private JButton play = new JButton("Play");
@@ -20,11 +15,6 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
 
     private JLabel title = new JLabel("Snake Game");
 
-    /**
-     * MainMenu Constructor that displays the gui
-     * It sets the title for the gui
-     * It adds the methods addingButtons and addLabel
-     */
     public MainMenu(){
         setTitle("Main Menu");
         panel.setLayout(null);
@@ -32,11 +22,6 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
         addLabel();
     }//end constructor
 
-    /**
-     * This method will make the play, settings and exit button
-     * It will add an ActionListener to each button
-     * It will add the buttons to the panel once the method is called
-     */
     private void addingButtons(){
         play.setBounds(68,100,200,40);
         play.addActionListener(this);
@@ -64,9 +49,6 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
         panel.add(exit);
     }//end method
 
-    /**
-     * This method will make the label that displays the userName of the game
-     */
     private void addLabel(){
         title.setBounds(90,20,200,40);
         title.setFont(new Font("monospaced",Font.PLAIN,25));

@@ -12,14 +12,7 @@ public class MainGui extends JFrame {
 
     JPanel panel = new JPanel();
 
-    /**
-     * MainGui Constructor will create the gui
-     */
     public MainGui(){
-        /**
-         * This variable is used to hold the size of the screen
-         * Toolkit will return the complete resolution of the screen
-         */
         dim = Toolkit.getDefaultToolkit().getScreenSize();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(350,500);
