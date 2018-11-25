@@ -25,7 +25,7 @@ public class GameOver implements ActionListener{
 
     public ArrayList<Integer> scores = new ArrayList<Integer>();
 
-    int count=0,curScore=PlayMenu.score;
+    int count=0,curScore=PlayMenu.score,increment;
 
 
     public GameOver(){
@@ -110,32 +110,41 @@ public class GameOver implements ActionListener{
                     names.add(line);
             }
             count=0;
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        int increment=names.size()-1;
+        increment=names.size();
+        if(scores.size()==0){
+            scores.add(curScore);
+            names.add(textBox.getText());
+        }
+        else {
+            for (int i = 0; i < names.size(); i++) {
+                if (curScore >= scores.get(i)) {
+                    while (increment > i) {
+                        if (increment == names.size()) {
+                            names.add(names.set(increment - 1, names.get(increment - 1)));
+                            scores.add(scores.set(increment - 1, scores.get(increment - 1)));
+                        }
+                        System.out.println(increment + "\n" + i);
+                        names.set(increment - 1, names.get(increment - 1));
+                        scores.set(increment - 1, scores.get(increment - 1));
+                        increment--;
 
-        for(int i=0;i<names.size();i++){
-            if (curScore >= scores.get(i)) {
-                while (increment > i) {
-                    names.set(increment,names.get(increment-1));
-                    scores.set(increment,scores.get(increment-1));
-                    increment--;
+                    }
+                    scores.set(i, curScore);
+                    names.set(i, textBox.getText());
                 }
-                scores.set(i, curScore);
-                names.set(i,textBox.getText());
-            }
 
-            if(names.size()>5){
-                names.remove(names.size());
-                scores.remove(scores.size());
+                if (names.size() > 5) {
+                    names.remove(names.size() - 1);
+                    scores.remove(scores.size() - 1);
+                }
             }
         }
-
         //https://stackoverflow.com/questions/1625234/how-to-append-text-to-an-existing-file-in-java
         try {
             FileWriter fw = new FileWriter(fileName);
