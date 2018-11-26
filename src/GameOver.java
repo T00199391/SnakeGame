@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 
-public class GameOver implements ActionListener{
+public class GameOver implements ActionListener,HideMenu{
 
     private JButton close = new JButton("Close");
 
@@ -72,7 +72,8 @@ public class GameOver implements ActionListener{
             }
             else{
                 enterScore();
-                System.exit(0);
+                MainMenu menu = new MainMenu();
+                hideMenu();
             }//end if
         }//end if
     }//end method
@@ -158,4 +159,9 @@ public class GameOver implements ActionListener{
             e.printStackTrace();
         }//end catch
     }//end method
+
+    @Override
+    public void hideMenu() {
+        gui.setVisible(false);
+    }
 }//end class

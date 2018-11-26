@@ -1,8 +1,6 @@
 import javafx.scene.media.MediaPlayer;
 import java.io.File;
 import javafx.scene.media.Media;
-import javafx.embed.swing.JFXPanel;
-import javafx.application.Platform;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,10 +23,10 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
     private GameOver gameOver;
 
-    static MediaPlayer mediaPlayer;
+    private static MediaPlayer mediaPlayer;
 
     //http://www.orangefreesounds.com/bing-sound/
-    String audioFile = "src/Resources/hitCherry.mp3";
+    private String audioFile = "src/Resources/hitCherry.mp3";
 
     /**
      * This creates a timer so the game can run
@@ -42,14 +40,14 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
     public static Point head,cherry;
 
     //This creates the scale of the snake and cherries and gives each direction there own number so you can ref them when controlling the game
-    private static boolean up=false,left=false,down=true,right=false;
+    private static final int UP =0, LEFT =1, DOWN =2, RIGHT =3;
 
     //This variable will set te scale which will be used to set the size of the snake and the cherries
     //This variable is also used to make the snake movement be like its in a grid
     public static final int SCALE=10;
 
     //The ticks variable is used to hold the value of the timer and is then used to help control the speed of the game
-    public int ticks;
+    public int ticks,direction= DOWN;
 
     //This will set a default speed and tail value at the start of the game unless you set the difficulty in the settings
     //This will create a variable to hold the score for the player
@@ -99,6 +97,7 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
         ticks=0;
         over=false;
         score =0;
+        direction = DOWN;
         timer.start();
     }//end method
 
@@ -117,16 +116,16 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
             parts.add(new Point(head.x,head.y));
 
-            if(up)
+            if(direction== UP)
                 head = new Point(head.x,head.y-1);
 
-            if(left)
+            if(direction== LEFT)
                 head = new Point(head.x-1,head.y);
 
-            if(down)
+            if(direction== DOWN)
                 head = new Point(head.x,head.y+1);
 
-            if(right)
+            if(direction== RIGHT)
                 head = new Point(head.x+1,head.y);
 
 
@@ -158,29 +157,17 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
             startCount++;
         }
 
-        if((i==KeyEvent.VK_W || i==KeyEvent.VK_UP) && !down ){
-            up = true;
-            left = false;
-            down = false;
-            right = false;
+        if((i==KeyEvent.VK_W || i==KeyEvent.VK_UP) && direction!= DOWN){
+            direction= UP;
         }
-        if((i==KeyEvent.VK_A || i==KeyEvent.VK_LEFT) && !right){
-            up = false;
-            left = true;
-            down = false;
-            right = false;
+        if((i==KeyEvent.VK_A || i==KeyEvent.VK_LEFT) && direction!= RIGHT){
+            direction= LEFT;
         }
-        if((i==KeyEvent.VK_S || i==KeyEvent.VK_DOWN) && !up){
-            up = false;
-            left = false;
-            down = true;
-            right = false;
+        if((i==KeyEvent.VK_S || i==KeyEvent.VK_DOWN) && direction!= UP){
+            direction= DOWN;
         }
-        if((i==KeyEvent.VK_D || i==KeyEvent.VK_RIGHT) && !left){
-            up = false;
-            left = false;
-            down = false;
-            right = true;
+        if((i==KeyEvent.VK_D || i==KeyEvent.VK_RIGHT) && direction!= LEFT){
+            direction= RIGHT;
         }
     }//end keyPressed
 
