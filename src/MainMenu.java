@@ -60,7 +60,7 @@ public class MainMenu  extends MainGui implements ActionListener,HideMenu {
     //This method will hide the current gui when called
     public void hideMenu() {
         setVisible(false);
-    }
+    }//end method
 
 
     //https://stackoverflow.com/questions/5936261/how-to-add-action-listener-that-listens-to-multiple-buttons

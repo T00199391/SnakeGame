@@ -77,12 +77,12 @@ public class GameOver implements ActionListener{
         }//end if
     }//end method
 
-    public void textBox(){
+    private void textBox(){
         textBox.setBounds(90,250,150,20);
         gui.panel.add(textBox);
-    }
+    }//end method
 
-    public void enterScore(){
+    private void enterScore(){
         leader = new PlayersInfo(textBox.getText(),curScore);
 
         if(SettingsMenu.numChoice==1){

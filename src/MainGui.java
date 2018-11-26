@@ -1,16 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * This class creates a template gui for the whole game
- * It extends JFrame and uses a JPanel
- * @author Emma Fitzgerald T00199391
- */
 public class MainGui extends JFrame {
 
-    Dimension dim;
+    public Dimension dim;
 
-    JPanel panel = new JPanel();
+    public JPanel panel = new JPanel();
 
     public MainGui(){
         dim = Toolkit.getDefaultToolkit().getScreenSize();

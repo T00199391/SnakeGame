@@ -22,13 +22,13 @@ public class SettingsMenu extends MainGui implements ActionListener,HideMenu {
     public SettingsMenu(){
         setTitle("Settings");
         panel.setLayout(null);
-        addButtons();
+        addConfirmButton();
         addDiffComboBox();
         addTitleLabel();
         addDifficultyLabel();
     }//end constructor
 
-    private void addButtons(){
+    private void addConfirmButton(){
         confirm.addActionListener(this);
         confirm.setBounds(68,400,200,40);
         confirm.setBackground(Color.white);

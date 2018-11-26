@@ -26,13 +26,13 @@ public class LeaderBoardMenu extends MainGui implements ActionListener,HideMenu{
     public LeaderBoardMenu(){
         setTitle("LeaderBoardMenu");
         panel.setLayout(null);
-        addButtons();
+        addOkButton();
         addDiffComboBox();
         addScoreLabel();
         addTextLabel();
     }//end constructor
 
-    private void addButtons(){
+    private void addOkButton(){
         ok.addActionListener(this);
         ok.setBounds(68,400,200,40);
         ok.setBackground(Color.white);
@@ -52,7 +52,7 @@ public class LeaderBoardMenu extends MainGui implements ActionListener,HideMenu{
 
     public void hideMenu(){
         setVisible(false);
-    }
+    }//end method
 
     private void addScoreLabel(){
         scoreLabel.setBounds(80,200,300,200);
@@ -105,14 +105,16 @@ public class LeaderBoardMenu extends MainGui implements ActionListener,HideMenu{
 
                 labelScore="";
                 labelName="";
-            }
+            }//end while
             count=0;
 
-        } catch (FileNotFoundException e) {
+        } //end try
+        catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        }//end catch
+        catch (IOException e) {
             e.printStackTrace();
-        }
+        }//end catch
         scoreLabel.setText("<html>" + labelString + "</html>");
     }//end method
 
@@ -127,4 +129,4 @@ public class LeaderBoardMenu extends MainGui implements ActionListener,HideMenu{
             leaderDifficulty();
         }//end if
     }//end actionPerformed
-}
+}//end class
