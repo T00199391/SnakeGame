@@ -7,25 +7,25 @@ import java.util.ArrayList;
 
 public class GameOver implements ActionListener{
 
-    JButton close = new JButton("Close");
+    private JButton close = new JButton("Close");
 
-    JLabel gameOver = new JLabel("GAME OVER");
+    private JLabel gameOver = new JLabel("GAME OVER");
 
-    JLabel nameLabel = new JLabel("Please Enter Name(4 characters)");
+    private JLabel nameLabel = new JLabel("Please Enter Name(4 characters)");
 
-    MainGui gui = new MainGui();
+    private MainGui gui = new MainGui();
 
-    PlayersInfo leader;
+    private PlayersInfo leader;
 
-    String fileName;
+    private String fileName;
 
-    JTextField textBox = new JTextField(4);
+    private JTextField textBox = new JTextField(4);
 
-    public ArrayList<String> names = new ArrayList<String>();
+    private ArrayList<String> names = new ArrayList<String>();
 
-    public ArrayList<Integer> scores = new ArrayList<Integer>();
+    private ArrayList<Integer> scores = new ArrayList<Integer>();
 
-    int count=0,curScore=PlayMenu.score,increment,updateCount=0;
+    private int count=0,curScore=PlayMenu.score,increment,updateCount=0;
 
 
     public GameOver(){
@@ -38,7 +38,7 @@ public class GameOver implements ActionListener{
         textBox();
     }//end constructor
 
-    public void closeGame(){
+    private void closeGame(){
         close.setBounds(68,400,200,40);
         close.setBackground(Color.white);
         close.setForeground(Color.black);
@@ -46,14 +46,14 @@ public class GameOver implements ActionListener{
         gui.panel.add(close);
     }//end method
 
-    public void gameOverLabel(){
+    private void gameOverLabel(){
         gameOver.setBounds(30,50,300,60);
         gameOver.setFont(new Font("monospaced",Font.PLAIN,50));
         gameOver.setForeground(Color.white);
         gui.panel.add(gameOver);
     }//end method
 
-    public void nameTextLabel(){
+    private void nameTextLabel(){
         nameLabel.setBounds(30,200,300,60);
         nameLabel.setFont(new Font("monospaced",Font.PLAIN,15));
         nameLabel.setForeground(Color.white);
@@ -87,14 +87,13 @@ public class GameOver implements ActionListener{
 
         if(SettingsMenu.numChoice==1){
             fileName = "src/Resources/easyScore.txt";
-
-        }
+        }//end if
         if(SettingsMenu.numChoice==2){
             fileName = "src/Resources/normalScore.txt";
-        }
+        }//end if
         if(SettingsMenu.numChoice==3){
             fileName = "src/Resources/hardScore.txt";
-        }
+        }//end if
 
         names.clear();
         scores.clear();
@@ -108,13 +107,15 @@ public class GameOver implements ActionListener{
                     scores.add(Integer.parseInt(line));
                 else
                     names.add(line);
-            }
+            }//end while loop
             count=0;
-        } catch (FileNotFoundException e) {
+        }//end try
+        catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        }//end catch
+        catch (IOException e) {
             e.printStackTrace();
-        }
+        }//end catch
 
         increment=names.size();
         if(scores.size()==0){
@@ -131,17 +132,17 @@ public class GameOver implements ActionListener{
                         scores.set(increment, scores.get(increment - 1));
                         increment--;
 
-                    }
+                    }//end while loop
                     scores.set(i, curScore);
                     names.set(i, textBox.getText());
                     updateCount++;
-                }
+                }//end if
 
                 if (names.size() > 5) {
                     names.remove(names.size() - 1);
                     scores.remove(scores.size() - 1);
-                }
-            }
+                }//end if
+            }//end for loop
         }
         //https://stackoverflow.com/questions/1625234/how-to-append-text-to-an-existing-file-in-java
         try {
@@ -150,10 +151,11 @@ public class GameOver implements ActionListener{
             for(int i=0;i<names.size();i++){
                 pw.println(names.get(i));
                 pw.println(scores.get(i));
-            }
+            }//end for loop
             pw.close();
-        } catch (IOException e) {
+        } //end try
+        catch (IOException e) {
             e.printStackTrace();
-        }
-    }
+        }//end catch
+    }//end method
 }//end class
