@@ -25,7 +25,7 @@ public class GameOver implements ActionListener{
 
     public ArrayList<Integer> scores = new ArrayList<Integer>();
 
-    int count=0,curScore=PlayMenu.score,increment;
+    int count=0,curScore=PlayMenu.score,increment,updateCount=0;
 
 
     public GameOver(){
@@ -123,20 +123,18 @@ public class GameOver implements ActionListener{
         }
         else {
             for (int i = 0; i < names.size(); i++) {
-                if (curScore >= scores.get(i)) {
-                    while (increment > i) {
-                        if (increment == names.size()) {
-                            names.add(names.set(increment - 1, names.get(increment - 1)));
-                            scores.add(scores.set(increment - 1, scores.get(increment - 1)));
-                        }
-                        System.out.println(increment + "\n" + i);
-                        names.set(increment - 1, names.get(increment - 1));
-                        scores.set(increment - 1, scores.get(increment - 1));
+                if (curScore >= scores.get(i) && updateCount==0) {
+                    while (increment-1 >= i) {
+                        names.add(names.set(increment - 1, names.get(increment - 1)));
+                        scores.add(scores.set(increment - 1, scores.get(increment - 1)));
+                        names.set(increment, names.get(increment - 1));
+                        scores.set(increment, scores.get(increment - 1));
                         increment--;
 
                     }
                     scores.set(i, curScore);
                     names.set(i, textBox.getText());
+                    updateCount++;
                 }
 
                 if (names.size() > 5) {
