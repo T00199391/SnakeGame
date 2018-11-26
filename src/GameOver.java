@@ -72,6 +72,7 @@ public class GameOver implements ActionListener,HideMenu{
             }
             else{
                 enterScore();
+                //System.exit(0);
                 MainMenu menu = new MainMenu();
                 hideMenu();
             }//end if

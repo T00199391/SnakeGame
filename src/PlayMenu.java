@@ -141,11 +141,18 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
     }//end actionPerformed
 
+    /**
+     * This method when called will hide the active menu
+     */
     @Override
     public void hideMenu() {
         setVisible(false);
     }//end method
 
+    /**
+     * The keyPressed method will read in the key pressed by the user and will determine what direction the snake will move in
+     * It will also determine when the game will start playing
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int i = e.getKeyCode();
@@ -242,7 +249,9 @@ public class PlayMenu extends MainGui implements ActionListener, KeyListener,Hid
 
     }//end method
 
-    /*Code researched and written by John Brosnan who sent it on for use with the audio aspects of the project*/
+    /**
+     * Code researched and written by John Brosnan who sent it on for use with the audio aspects of the project
+     */
     public static void playAudio(String path)
     {
         Media audioClip = new Media(new File(path).toURI().toString());
